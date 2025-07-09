@@ -69,7 +69,25 @@ namespace VideoGameApi.Controllers
 
         }
 
+        // Update an existing video game
+        [HttpPut]
+        [Route("{id}")]
+        public ActionResult UpdateVideoGame(int id, VideoGame updatedGame)
+        {
 
+            var game = videoGames.FirstOrDefault(g => g.Id == id);
+
+            if (game == null)
+                return NotFound();
+
+            game.Title = updatedGame.Title;
+            game.Platform = updatedGame.Platform;
+            game.Developer = updatedGame.Developer;
+            game.Publisher = updatedGame.Publisher;
+
+            return NoContent();
+
+        }
 
     }
 }
