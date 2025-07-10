@@ -9,29 +9,29 @@ namespace VideoGameApi.Controllers
     {
         static private List<VideoGame> videoGames = new List<VideoGame>
         {
-            new VideoGame 
+            new VideoGame
             {
-                Id = 1, 
-                Title = "The Legend of Zelda: Breath of the Wild", 
-                Platform = "Nintendo Switch", 
-                Developer = "Nintendo EPD", 
-                Publisher = "Nintendo" 
+                Id = 1,
+                Title = "The Legend of Zelda: Breath of the Wild",
+                Platform = "Nintendo Switch",
+                Developer = "Nintendo EPD",
+                Publisher = "Nintendo"
             },
-            new VideoGame 
-            { 
+            new VideoGame
+            {
                 Id = 2,
-                Title = "God of War", 
-                Platform = "PlayStation 4", 
-                Developer = "Santa Monica Studio", 
-                Publisher = "Sony Interactive Entertainment" 
+                Title = "God of War",
+                Platform = "PlayStation 4",
+                Developer = "Santa Monica Studio",
+                Publisher = "Sony Interactive Entertainment"
             },
-            new VideoGame 
-            { 
-                Id = 3, 
-                Title = "Minecraft", 
-                Platform = "Multi-platform", 
-                Developer = "Mojang Studios", 
-                Publisher = "Mojang Studios" 
+            new VideoGame
+            {
+                Id = 3,
+                Title = "Minecraft",
+                Platform = "Multi-platform",
+                Developer = "Mojang Studios",
+                Publisher = "Mojang Studios"
             }
         };
 
@@ -89,5 +89,20 @@ namespace VideoGameApi.Controllers
 
         }
 
+        // Delete a video game
+        [HttpDelete]
+        [Route("{id}")]
+
+        public ActionResult DeleteVideoGame(int id)
+        {
+
+            var game = videoGames.FirstOrDefault(g => g.Id == id);
+            if (game == null)
+                return NotFound();
+
+            videoGames.Remove(game);
+            return NoContent();
+
+        }
     }
 }
